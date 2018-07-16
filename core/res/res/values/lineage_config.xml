@@ -49,4 +49,7 @@
     <bool name="config_needCustomFODView">false</bool>
 
     <bool name="config_usesOnePlusFOD">false</bool>
+
+    <!-- Whether device ignores the RSSNR signal implementation -->
+    <bool name="config_ignoreRssnrSignalLevel">false</bool>
 </resources>
