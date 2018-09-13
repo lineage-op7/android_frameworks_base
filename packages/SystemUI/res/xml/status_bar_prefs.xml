@@ -78,6 +78,12 @@
         android:dependency="mobile"
         android:defaultValue="@bool/config_show4GForLTE" />
 
+    <SwitchPreference
+        android:key="use_old_mobiletype"
+        android:title="@string/use_old_mobiletype_title"
+        android:dependency="mobile"
+        android:defaultValue="false" />
+
     <com.android.systemui.tuner.StatusBarSwitch
         android:key="airplane"
         android:title="@string/status_bar_airplane" />

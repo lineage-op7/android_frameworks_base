@@ -32,8 +32,10 @@ import com.android.systemui.R;
 public class StatusBarTuner extends PreferenceFragment {
 
     private static final String SHOW_FOURG = "show_fourg";
+    private static final String OMNI_USE_OLD_MOBILETYPE = "use_old_mobiletype";
 
     private SwitchPreference mShowFourG;
+    private SwitchPreference mUseOldMobileType;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -41,13 +43,18 @@ public class StatusBarTuner extends PreferenceFragment {
         setHasOptionsMenu(true);
         getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
         mShowFourG = (SwitchPreference) findPreference(SHOW_FOURG);
+        mUseOldMobileType = (SwitchPreference) findPreference(OMNI_USE_OLD_MOBILETYPE);
         if (isWifiOnly()) {
             getPreferenceScreen().removePreference(mShowFourG);
+            getPreferenceScreen().removePreference(mUseOldMobileType);
         } else {
             mShowFourG.setChecked(Settings.System.getIntForUser(getActivity().getContentResolver(),
                 Settings.System.SHOW_FOURG,
                 getActivity().getResources().getBoolean(R.bool.config_show4GForLTE) ? 1 : 0,
                 UserHandle.USER_CURRENT) == 1);
+            mUseOldMobileType.setChecked(Settings.System.getIntForUser(getActivity().getContentResolver(),
+                Settings.System.OMNI_USE_OLD_MOBILETYPE, 0,
+                UserHandle.USER_CURRENT) != 0);
         }
     }
 
@@ -83,6 +90,11 @@ public class StatusBarTuner extends PreferenceFragment {
             boolean checked = ((SwitchPreference)preference).isChecked();
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.SHOW_FOURG, checked ? 1 : 0);
+            return true;
+        } else if (preference == mUseOldMobileType) {
+            boolean checked = ((SwitchPreference)preference).isChecked();
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.OMNI_USE_OLD_MOBILETYPE, checked ? 1 : 0);
             return true;
         }
         return super.onPreferenceTreeClick(preference);

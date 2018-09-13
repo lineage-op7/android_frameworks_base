@@ -20,4 +20,5 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="show_fourg_title">Показувати 4G замість LTE</string>
+    <string name="use_old_mobiletype_title">Використовувати старий значок мережі</string>
 </resources>

@@ -19,4 +19,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- 4G LTE switch -->
     <string name="show_fourg_title">Show 4G instead of LTE</string>
+
+    <!-- Old Style Mobile -->
+    <string name="use_old_mobiletype_title">Use old mobile type style</string>
 </resources>
