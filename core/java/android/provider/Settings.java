@@ -4136,6 +4136,15 @@ public final class Settings {
         public static final String VOLUME_KEY_CURSOR_CONTROL = "volume_key_cursor_control";
 
         /**
+         * @hide
+         */
+        public static final String LINEAGE_CUSTOM_FP_ICON = "custom_fingerprint_icon";
+
+        /** @hide */
+        private static final Validator LINEAGE_CUSTOM_FP_ICON_VALIDATOR =
+                ANY_STRING_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -4195,6 +4204,7 @@ public final class Settings {
             HAPTIC_FEEDBACK_INTENSITY,
             DISPLAY_COLOR_MODE,
             NOTIFICATION_LIGHT_PULSE,
+            LINEAGE_CUSTOM_FP_ICON,
         };
 
         /**
@@ -4309,6 +4319,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(EGG_MODE);
             PRIVATE_SETTINGS.add(SHOW_BATTERY_PERCENT);
             PRIVATE_SETTINGS.add(DISPLAY_COLOR_MODE);
+            PRIVATE_SETTINGS.add(LINEAGE_CUSTOM_FP_ICON);
         }
 
         /**
@@ -4400,6 +4411,8 @@ public final class Settings {
             VALIDATORS.put(NOTIFICATION_LIGHT_PULSE, BOOLEAN_VALIDATOR);
             VALIDATORS.put(ACCELEROMETER_ROTATION_ANGLES,
                     ACCELEROMETER_ROTATION_ANGLES_VALIDATOR);
+            VALIDATORS.put(LINEAGE_CUSTOM_FP_ICON,
+                    LINEAGE_CUSTOM_FP_ICON_VALIDATOR);
         }
 
         /**
