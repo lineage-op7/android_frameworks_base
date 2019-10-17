@@ -24,6 +24,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
+import android.hardware.display.DisplayManager;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.RemoteException;
@@ -57,6 +58,7 @@ public class FODCircleView extends ImageView {
     private final Paint mPaintFingerprint = new Paint();
     private final WindowManager.LayoutParams mParams = new WindowManager.LayoutParams();
     private final WindowManager mWindowManager;
+    private final DisplayManager mDisplayManager;
 
     private IFingerprintInscreen mFingerprintInscreenDaemon;
 
@@ -141,6 +143,7 @@ public class FODCircleView extends ImageView {
         mPaintFingerprint.setColor(res.getColor(R.color.config_fodColor));
 
         mWindowManager = context.getSystemService(WindowManager.class);
+        mDisplayManager = context.getSystemService(DisplayManager.class);
 
         mNavigationBarSize = res.getDimensionPixelSize(R.dimen.navigation_bar_size);
 
@@ -361,12 +364,12 @@ public class FODCircleView extends ImageView {
             }
 
             if (mShouldBoostBrightness) {
-                mParams.screenBrightness = 1.0f;
+                mDisplayManager.setTemporaryBrightness(255);
             }
 
             mParams.dimAmount = dimAmount / 255.0f;
         } else {
-            mParams.screenBrightness = 0.0f;
+            mDisplayManager.setTemporaryBrightness(-1);
             mParams.dimAmount = 0.0f;
         }
 
