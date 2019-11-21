@@ -252,7 +252,7 @@ public class FODCircleView extends ImageView implements OnTouchListener {
             return false;
         }
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            setImageResource(R.drawable.fod_icon_empty);
+            setImageDrawable(null);
         }
         return true;
     }
@@ -371,7 +371,7 @@ public class FODCircleView extends ImageView implements OnTouchListener {
                 UserHandle.USER_CURRENT);
 
         if (!mIsPulsing && (mIsDreaming || (mShouldHide && mShouldNotHide))) {
-            setImageResource(R.drawable.fod_icon_empty);
+            setImageDrawable(null);
             return;
         }
 
