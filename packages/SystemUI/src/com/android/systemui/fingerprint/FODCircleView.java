@@ -64,6 +64,7 @@ public class FODCircleView extends ImageView {
 
     private int mDreamingOffsetX;
     private int mDreamingOffsetY;
+    private int mCurrentBrightness;
 
     private boolean mIsBouncer;
     private boolean mIsDreaming;
@@ -351,14 +352,14 @@ public class FODCircleView extends ImageView {
     }
 
     private void setDim(boolean dim) {
+        mCurrentBrightness = Settings.System.getInt(getContext().getContentResolver(),
+                Settings.System.SCREEN_BRIGHTNESS, 100);
         if (dim) {
-            int curBrightness = Settings.System.getInt(getContext().getContentResolver(),
-                    Settings.System.SCREEN_BRIGHTNESS, 100);
             int dimAmount = 0;
 
             IFingerprintInscreen daemon = getFingerprintInScreenDaemon();
             try {
-                dimAmount = daemon.getDimAmount(curBrightness);
+                dimAmount = daemon.getDimAmount(mCurrentBrightness);
             } catch (RemoteException e) {
                 // do nothing
             }
@@ -369,6 +370,7 @@ public class FODCircleView extends ImageView {
 
             mParams.dimAmount = dimAmount / 255.0f;
         } else {
+            mDisplayManager.setTemporaryBrightness(mCurrentBrightness);
             mDisplayManager.setTemporaryBrightness(-1);
             mParams.dimAmount = 0.0f;
         }
