@@ -288,6 +288,11 @@ public class FODCircleView extends ImageView {
     }
 
     public void show() {
+        if (!mUpdateMonitor.isUnlockWithFingerprintPossible(KeyguardUpdateMonitor.getCurrentUser()) ||
+            !mUpdateMonitor.isUnlockingWithFingerprintAllowed()) {
+            return;
+        }
+
         if (mIsBouncer) {
             // Ignore show calls when Keyguard pin screen is being shown
             return;
