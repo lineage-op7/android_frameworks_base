@@ -383,6 +383,11 @@ public class FODCircleView extends ImageView implements OnTouchListener {
     }
 
     public void show() {
+        if (!mUpdateMonitor.isUnlockWithFingerprintPossible(KeyguardUpdateMonitor.getCurrentUser()) ||
+            !mUpdateMonitor.isUnlockingWithFingerprintAllowed()) {
+            return;
+        }
+
         if (mIsViewAdded) {
             return;
         }
