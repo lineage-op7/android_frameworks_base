@@ -487,7 +487,7 @@ public class FODCircleView extends ImageView implements OnTouchListener {
                 }
             }
 
-            if (mShouldBoostBrightness) {
+            if (mShouldBoostBrightness && mIsViewAdded) {
                 mDisplayManager.setTemporaryBrightness(255);
             }
 
