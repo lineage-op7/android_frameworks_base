@@ -269,6 +269,9 @@ public class FODCircleView extends ImageView implements OnTouchListener {
                 setAlpha(1.0f);
             }
             if (!mIsPressed) {
+                if (mShouldBoostBrightness && mIsViewAdded) {
+                    mDisplayManager.setTemporaryBrightness(255);
+                }
                 IFingerprintInscreen daemon = getFingerprintInScreenDaemon();
                 if (daemon != null) {
                     try {
@@ -485,10 +488,6 @@ public class FODCircleView extends ImageView implements OnTouchListener {
                 } catch (RemoteException e) {
                     // do nothing
                 }
-            }
-
-            if (mShouldBoostBrightness && mIsViewAdded) {
-                mDisplayManager.setTemporaryBrightness(255);
             }
 
             mParams.dimAmount = ((float) dimAmount) / 255.0f;
