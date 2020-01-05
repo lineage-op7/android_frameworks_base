@@ -39,6 +39,7 @@ import android.view.View.OnTouchListener;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.android.internal.graphics.ColorUtils;
 import com.android.keyguard.KeyguardUpdateMonitor;
 import com.android.keyguard.KeyguardUpdateMonitorCallback;
 import com.android.systemui.R;
@@ -201,8 +202,9 @@ public class FODCircleView extends ImageView implements OnTouchListener {
 
         Resources res = context.getResources();
 
+        final float fodCircleDimValue = res.getFloat(com.android.internal.R.integer.config_fodCircleDimValue);
         mPaintFingerprint.setAntiAlias(true);
-        mPaintFingerprint.setColor(res.getColor(R.color.config_fodColor));
+        mPaintFingerprint.setColor(ColorUtils.blendARGB(res.getColor(R.color.config_fodColor), Color.BLACK, fodCircleDimValue));
 
         setImageResource(R.drawable.fod_icon_default);
 

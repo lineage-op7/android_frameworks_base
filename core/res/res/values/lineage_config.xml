@@ -47,4 +47,7 @@
 
     <!-- Whether device ignores the RSSNR signal implementation -->
     <bool name="config_ignoreRssnrSignalLevel">false</bool>
+
+    <!-- FOD circle highlight dim value -->
+    <item name="config_fodCircleDimValue" format="float" type="integer">0</item>
 </resources>
