@@ -120,7 +120,7 @@ public abstract class EnrollClient extends ClientMonitor {
                 }
             }
             try {
-                mStatusBarService.showInDisplayFingerprintView();
+                mStatusBarService.showInDisplayFingerprintView(true);
             } catch (RemoteException e) {
                 Slog.e(TAG, "showInDisplayFingerprintView failed", e);
             }

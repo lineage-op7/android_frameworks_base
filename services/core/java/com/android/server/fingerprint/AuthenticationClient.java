@@ -277,7 +277,7 @@ public abstract class AuthenticationClient extends ClientMonitor {
                 }
             }
             try {
-                mStatusBarService.showInDisplayFingerprintView();
+                mStatusBarService.showInDisplayFingerprintView(false);
             } catch (RemoteException e) {
                 Slog.e(TAG, "showInDisplayFingerprintView failed", e);
             }

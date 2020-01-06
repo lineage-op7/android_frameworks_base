@@ -76,6 +76,7 @@ public class FODCircleView extends ImageView implements OnTouchListener {
     private boolean mIsScreenOn;
     private boolean mIsViewAdded;
     private boolean mIsRemoving;
+    private boolean mIsEnrolling;
 
     private Handler mHandler;
 
@@ -383,6 +384,15 @@ public class FODCircleView extends ImageView implements OnTouchListener {
     }
 
     public void show() {
+        show(false);
+    }
+
+    public void show(boolean isEnrolling) {
+        if (!isEnrolling && (!mUpdateMonitor.isUnlockWithFingerprintPossible(KeyguardUpdateMonitor.getCurrentUser()) ||
+            !mUpdateMonitor.isUnlockingWithFingerprintAllowed())) {
+            return;
+        }
+
         if (mIsRemoving) {
             // Last removal hasn't been finished yet
             mIsRemoving = false;
@@ -418,7 +428,10 @@ public class FODCircleView extends ImageView implements OnTouchListener {
         mIsViewAdded = true;
 
         mIsPressed = false;
-        setDim(false);
+        mIsEnrolling = isEnrolling;
+        if (mIsEnrolling) {
+            setDim(false);
+        }
     }
 
     public void hide() {
